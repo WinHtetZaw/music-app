@@ -1,4 +1,3 @@
-import React from "react";
 import {
   setActiveMusic,
   setCurrentPlayingIndex,
@@ -15,18 +14,14 @@ type Props = {
 
 const ItemList = (props: Props) => {
   const { title_short, artist, album } = props.track;
-  // const {currentPlayingIndex} = useAppSelector(state => state.musicSlice)
   const dispatch = useAppDispatch();
-  // const { activeMusic } = useAppSelector((state) => state.musicSlice);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>, el: Item) => {
     e.stopPropagation();
     dispatch(setActiveMusic(el));
     dispatch(setCurrentPlayingIndex({ num: props.indexNum, max: props.max }));
-    // console.log(props.indexNum)
   };
 
-  // activeMusic && console.log(activeMusic);
 
   return (
     <>

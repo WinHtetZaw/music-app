@@ -1,13 +1,10 @@
-import { Input } from "@nextui-org/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { GoSearch } from "react-icons/go";
 import { setSearchName } from "../redux/features/musicSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { HiXMark } from "react-icons/hi2";
 
 const SearchInput = () => {
-  // const [search, setSearch] = useState<string>("");
-  const { searchName } = useAppSelector((state) => state.musicSlice);
   const dispatch = useAppDispatch();
   const searchRef = useRef<string>("");
   const formRef = useRef<HTMLFormElement | null>(null);

@@ -10,7 +10,6 @@ export const musicApi = createApi({
     baseUrl: "https://deezerdevs-deezer.p.rapidapi.com/",
   }),
   endpoints: (builder) => ({
-    // getPokemonByName: builder.query<Pokemon, string>({
     getSearchLists: builder.query<FetchData, string>({
       query: (q) => ({
         url: `search?q=${q}`,

@@ -6,7 +6,6 @@ export const billboardApi = createApi({
     baseUrl: "https://billboard-api2.p.rapidapi.com/",
   }),
   endpoints: (builder) => ({
-    // getPokemonByName: builder.query<Pokemon, string>({
     getArtists: builder.query<unknown, { from: number; to: number }>({
       query: ({ from, to }) => ({
         url: `artist-100?date=2019-05-11&range=${from}-${to}`,

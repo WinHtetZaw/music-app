@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { CurrentTrack, Item } from "../../shared/type";
-// import { RootState } from "../store";
 
 export interface SearchState {
   searchName: string;
@@ -41,9 +40,6 @@ export const musicSlice = createSlice({
     reduceCurrentPlayingIndex: (state) => {
       state.currentPlayingIndex--;
     },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
   },
 });
 
