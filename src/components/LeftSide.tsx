@@ -1,31 +1,17 @@
-import { useGetArtistsQuery } from "../redux/services/billboardApi";
-import { useState, useEffect } from "react";
+import ArtistListLooping from "./ArtistListLooping";
 
-type Props = {};
-
-const LeftSide = (props: Props) => {
-  //   const { data } = useGetArtistsQuery({ from: 1, to: 20 });
-  const [artists, setArtists] = useState<string[]>([]);
-  //   data && console.log(data);
-
-  useEffect(() => {
-    if (artists && artists.length <= 20) {
-    //   setArtists([...artists, "artists name"]);
-      for (let i = 0; i < 20; i++) {
-        // const element = array[index];
-        setArtists([...artists, "artists name"]);
-      }
-    }
-
-  }, []);
-
-  artists && console.log(artists);
+const LeftSide = () => {
   return (
     <>
-      <section className="hidden sm:block bg-gradient-to-bl from-sky-950 to-black min-w-[300px]">
-        <ul>
-          <li>artist name</li>
-        </ul>
+      <section
+        className={`hidden sm:block h-full sm:h-screen  bg-[#1a2238] min-w-[250px] md:min-w-[300px] pr-2 py-2`}
+      >
+        <div className="pt-5 h-full sm:leftSide-h overflow-y-auto custom-scrollbar">
+          <h2 className=" w-full text-center capitalize text-lg tracking-wider">
+            top artists of 2023
+          </h2>
+          <ArtistListLooping />
+        </div>
       </section>
     </>
   );

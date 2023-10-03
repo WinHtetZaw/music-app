@@ -173,7 +173,8 @@
   display: none;
 }
 .rhap_main-controls {
-  width: 100%;
+  margin: 0 auto;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,15 +1,27 @@
+// react 
+import { lazy, Suspense } from "react";
+
+// react router
 import { Route, Routes } from "react-router-dom";
+
+// pages
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
+
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => {
-  // const { data, isSuccess } = useGetSearchListsQuery("eminem");
-  // isSuccess && console.log(data);
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div>loading...</div>}>
+              <NotFound />
+            </Suspense>
+          }
+        />
       </Routes>
     </>
   );

@@ -54,3 +54,8 @@ export type ArtistFetchData = {
   info: unknown;
   notice: unknown;
 };
+
+export type CurrentTrack = {
+  num: number;
+  max: number;
+};

@@ -1,54 +1,69 @@
+// share
 import { Item } from "../shared/type";
 
+// icons
+import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
+
+// react audio library
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
-//   album: unknown;
-//   artist: unknown;
-//   duration: number;
-//   explicit_content_cover: number;
-//   explicit_content_lyrics: number;
-//   explicit_lyrics: boolean;
-//   id: number;
-//   link: string;
-//   md5_image: string;
-//   preview: string;
-//   rank: number;
-//   readable: boolean;
-//   title: string;
-//   title_short: string;
-//   title_version: string;
-//   type: string;
-// };
+// react redux
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import {
+  addCurrentPlayingIndex,
+  reduceCurrentPlayingIndex,
+  setCurrentPlayingIndex,
+} from "../redux/features/musicSlice";
 
-type Props = { track?: Item; isLoading: boolean };
+type Props = { track?: Item; isLoading: boolean; max: number };
 
 const ItemCard = (props: Props) => {
+  const { currentPlayingIndex } = useAppSelector((state) => state.musicSlice);
+  const dispatch = useAppDispatch();
+  // console.log(currentPlayingIndex);
+
+  const handleNext = (): void => {
+    if (currentPlayingIndex > props.max) {
+      dispatch(setCurrentPlayingIndex({ num: 0, max: props.max }));
+    } else {
+      dispatch(addCurrentPlayingIndex());
+    }
+  };
+
+  const handlePrevious = (): void => {
+    if (currentPlayingIndex < 0) {
+      dispatch(setCurrentPlayingIndex({ num: props.max, max: props.max }));
+    } else {
+      dispatch(reduceCurrentPlayingIndex());
+    }
+  };
+
   return (
-    <div
-      // onMouseOver={() => setIsHover(true)}
-      // onMouseLeave={() => setIsHover(false)}
-      // className={`card-container group  ${
-      //   isHover && "animate__animated animate__jello"
-      // }`}
-      className={`card-container group`}
-    >
+    <div key={currentPlayingIndex} className={`card-container group`}>
       {/* image  */}
       <div className=" overflow-hidden rounded-md select-none">
-        {/* <img src="https://images.pexels.com/photos/248510/pexels-photo-248510.jpeg?auto=compress&cs=tinysrgb&w=600" /> */}
         <img src={props.track?.album.cover_big} />
       </div>
 
       <div className=" text-center w-full truncate my-2">
-        <h3>{props?.track?.title_short}</h3>
+        <h3 className="font-1">{props?.track?.title_short}</h3>
       </div>
 
-      <div className=" mt-auto">
+      <div className="relative mt-auto">
         <AudioPlayer
-          // autoPlay
+          autoPlayAfterSrcChange={false}
           src={props?.track?.preview}
-          onPlay={(e) => console.dir(e.target)}
         />
+        <button onClick={handleNext} className="absolute right-0 bottom-[-3px]">
+          <BiSkipNext className=" text-gray text-[45px]" />
+        </button>
+        <button
+          onClick={handlePrevious}
+          className="absolute left-0 bottom-[-3px]"
+        >
+          <BiSkipPrevious className=" text-gray text-[45px]" />
+        </button>
       </div>
     </div>
   );
