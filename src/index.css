@@ -44,8 +44,9 @@ body {
     background-color: #868686;
   }
   .text-gray {
-    color: #868686
+    color: #868686;
   }
+  
 }
 
 @layer components {
@@ -71,11 +72,19 @@ body {
   .list-container {
     @apply w-full h-full p-10 overflow-y-auto grid grid-cols-1 gap-y-7 mx-auto justify-center;
   }
+  .logo-container {
+    @apply relative flex items-center justify-center;
+  }
+  .logo-border {
+    @apply block w-[30px] aspect-square rounded-full border-[1px] group-hover:scale-[1.5] group-hover:border-opacity-0 border-slate-300 transition-all duration-300;
+  }
+  .logo {
+    @apply absolute text-[14px] group-hover:text-rose-600 group-hover:scale-[1.8] transition duration-300 ease-out;
+  }
+  .activeArtist {
+    @apply ring-1 ring-rose-600 ring-inset
+  }
 }
-
-/* .activeArtist ~ li {
-  background-color: red;
-} */
 
 .activeArtist + li {
   scale: 1.05 1.2;

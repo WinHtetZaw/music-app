@@ -22,6 +22,7 @@ import { RiMenu4Line } from "react-icons/ri";
 
 // ui library
 import { useDisclosure } from "@nextui-org/react";
+import Foot from "../components/Foot";
 
 const Home = () => {
   const { currentPlayingIndex } = useAppSelector((state) => state.musicSlice);
@@ -124,6 +125,8 @@ const Home = () => {
           </article>
         </main>
       </div>
+
+      <Foot/>
     </div>
   );
 };
